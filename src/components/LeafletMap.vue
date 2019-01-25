@@ -5,6 +5,7 @@
 <script>
 import L from "leaflet";
 import "leaflet.chinatmsproviders";
+// import _ from "lodash";
 
 // import "../../node_modules/leaflet/dist/leaflet.css";
 
@@ -76,7 +77,9 @@ export default {
 
     // 添加标记点
     initMarker(lat, lng, template, tooltipTpl) {
-      return L.marker([lng, lat]).bindPopup(template).bindTooltip(tooltipTpl);
+      return L.marker([lng, lat])
+        .bindPopup(template)
+        .bindTooltip(tooltipTpl);
     },
 
     // 初始化所有标记点
@@ -84,7 +87,10 @@ export default {
       // 清空所有标记点
       this.markerLayerGroup && this.markerLayerGroup.clearLayers();
 
-      let markers = mapdata.map(element => {
+      this.markerLayerGroup = L.layerGroup();
+      this.markerLayerGroup.addTo(this.map);
+
+      /* let markers =  */mapdata.map((element, index) => {
         let html = "";
         if (element.labels) {
           let labels = element.labels.split("|");
@@ -98,7 +104,7 @@ export default {
         }); */
 
         const template = `
-        <h3>[${element.city}]${element.title}</h3>
+        <h3>【${element.city}】${element.title}</h3>
         <div><strong>地址：</strong>${element.location}-${element.price}元-${
           element.tags
         }</div>
@@ -109,14 +115,31 @@ export default {
         }" target="_blank">${element.source}</a></div>
       `;
 
-      // tooltip 模板
-      const tooltipTpl = `[${element.city}]${element.title}`;
+        // tooltip 模板
+        const tooltipTpl = `【${element.city}】${element.title}`;
 
-        return this.initMarker(element.longitude, element.latitude, template, tooltipTpl);
+        let tempMarker = this.initMarker(
+          element.longitude,
+          element.latitude,
+          template,
+          tooltipTpl
+        );
+
+        let timer = setTimeout(() => {
+          this.markerLayerGroup.addLayer(tempMarker)
+          clearTimeout(timer);
+        }, index * 10);
+
+        /* return this.initMarker(
+          element.longitude,
+          element.latitude,
+          template,
+          tooltipTpl
+        ); */
       });
 
-      this.markerLayerGroup = L.layerGroup(markers);
-      this.markerLayerGroup.addTo(this.map);
+      /* this.markerLayerGroup = L.layerGroup(markers);
+      this.markerLayerGroup.addTo(this.map); */
     }
   }
 };

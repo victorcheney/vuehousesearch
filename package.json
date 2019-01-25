@@ -12,6 +12,7 @@
     "iview": "^3.2.2",
     "leaflet": "^1.4.0",
     "leaflet.chinatmsproviders": "^2.0.2",
+    "lodash": "^4.17.11",
     "vue": "^2.5.21"
   },
   "devDependencies": {
