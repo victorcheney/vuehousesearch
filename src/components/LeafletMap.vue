@@ -56,12 +56,12 @@ export default {
       this.map = L.map("map").setView(this.mapConfig.center, 12);
 
       L.tileLayer
-        .chinaProvider("GaoDe.Satellite.Map", {
+        .chinaProvider("TianDiTu.Satellite.Map", {
           attribution: ""
         })
         .addTo(this.map);
       L.tileLayer
-        .chinaProvider("GaoDe.Satellite.Annotion", {
+        .chinaProvider("TianDiTu.Satellite.Annotion", {
           attribution: ""
         })
         .addTo(this.map);

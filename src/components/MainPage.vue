@@ -6,7 +6,20 @@
         <Content>
           <LeafletMap v-if="mapdata" :mapdata="mapdata"></LeafletMap>
         </Content>
-        <Sider hide-trigger>
+        <Sider hide-trigger><!-- v-on:start_callback="countDownS_cb(1)"
+            v-on:end_callback="countDownE_cb(1)" -->
+          <countdown
+            :currentTime="1481450106"
+            :startTime="1481450110"
+            :endTime="1549119599000"
+            :tipText="'距离开始'"
+            :tipTextEnd="'结束倒计时'"
+            :endText="'活动结束'"
+            :dayTxt="'天'"
+            :hourTxt="':'"
+            :minutesTxt="':'"
+            :secondsTxt="''"
+          ></countdown>
           <!-- 搜索面板 -->
           <search-panel @search-params="searchHouse"></search-panel>
         </Sider>
@@ -20,6 +33,7 @@
 <script>
 import LeafletMap from "./LeafletMap.vue";
 import SearchPanel from "./SearchPanel.vue";
+import countdown from "./Countdown.vue"
 
 export default {
   name: "MainPage",
@@ -46,7 +60,8 @@ export default {
   },
   components: {
     LeafletMap,
-    SearchPanel
+    SearchPanel,
+    countdown
   },
   methods: {
     searchHouse(params) {
