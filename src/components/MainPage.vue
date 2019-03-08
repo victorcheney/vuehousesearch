@@ -8,9 +8,9 @@
         </Content>
         <Sider hide-trigger><!-- v-on:start_callback="countDownS_cb(1)"
             v-on:end_callback="countDownE_cb(1)" -->
-          <countdown
-            :currentTime="1481450106"
-            :startTime="1481450110"
+          <!-- <countdown
+            :currentTime="1549119449000"
+            :startTime="1549119499000"
             :endTime="1549119599000"
             :tipText="'距离开始'"
             :tipTextEnd="'结束倒计时'"
@@ -19,7 +19,7 @@
             :hourTxt="':'"
             :minutesTxt="':'"
             :secondsTxt="''"
-          ></countdown>
+          ></countdown> -->
           <!-- 搜索面板 -->
           <search-panel @search-params="searchHouse"></search-panel>
         </Sider>
